@@ -27,5 +27,5 @@ jobs:
           timestamp=$(date +%Y%m%d%H%M%S)
           filename=DBTEST-$timestamp.sql
           TOKEN=$(aws rds generate-db-auth-token --hostname ${{ secrets.RDS_INSTANCE_ENDPOINT }} --port 3306 --region us-east-1 --user admin)
-          mysqldump --host=${{ secrets.RDS_INSTANCE_ENDPOINT }} --port=3306 --user=admin --password=${{ secrets.RDS_DB_PASSWORD }} ${{ secrets.RDS_DB_NAME }} > $filename
+          mysqldump --host=${{ secrets.RDS_INSTANCE_ENDPOINT }} --port=3306 --user=admin --password=Uphone2021 ${{ secrets.RDS_DB_NAME }} > $filename
           aws s3 cp $filename s3://respaldo-bdd/
