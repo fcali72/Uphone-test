@@ -25,7 +25,7 @@ jobs:
       - name: Dump RDS database
         run: |
           timestamp=$(date +%Y%m%d%H%M%S)
-          filename=DBUPHONETEST-$timestamp.sql
+          filename=DBUPHONETEST-$timestamp.sql.gz
           TOKEN=$(aws rds generate-db-auth-token --hostname ${{ secrets.RDS_INSTANCE_ENDPOINT }} --port 3306 --region us-east-1 --user ${{ secrets.RDS_DB_USERNAME }})
           mysqldump --host=${{ secrets.RDS_INSTANCE_ENDPOINT }} --port=3306 --user=${{ secrets.RDS_DB_USERNAME }} --password=${{ secrets.RDS_DB_PASSWORD }} ${{ secrets.RDS_DB_NAME }} | gzip > $filename
           aws s3 cp $filename s3://respaldo-bd-test/
